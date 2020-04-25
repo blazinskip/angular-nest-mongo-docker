@@ -1,24 +1,20 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { TaskService } from './task.service';
+import { Task } from './task';
 
 @Controller('tasks')
 export class TaskController {
-  private static tasks = [{ id: 1, name: 'this is first task' }];
-
-  constructor() {
+  constructor(private readonly taskService: TaskService) {
   }
 
   @Post()
-  createTask(@Body() task: { name: string }) {
-    const newTask = { id: TaskController.tasks.length + 1, ...task };
-
-    TaskController.tasks = [...TaskController.tasks, newTask];
-
-    return newTask;
+  async createTask(@Body() task: { name: string }): Promise<Task> {
+    return this.taskService.create(task);
   }
 
 
   @Get()
-  findAll(): any[] {
-    return TaskController.tasks;
+  async findAll(): Promise<Task[]> {
+    return this.taskService.findAll();
   }
 }
