@@ -5,13 +5,14 @@ import { TaskFormComponent } from './components/task-form.component';
 import { TasksComponent } from './components/tasks.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { TaskService } from './task.service';
 
 
 @NgModule({
-  imports: [CommonModule,ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   declarations: [TaskContainer, TaskComponent, TaskFormComponent, TasksComponent],
   exports: [TaskContainer],
-  providers: [],
+  providers: [TaskService],
 })
 export class TaskModule {
 }
