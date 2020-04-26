@@ -1,0 +1,17 @@
+version: '3'
+services:
+  backend:
+    container_name: backend
+    restart: always
+    build: ./backend
+    ports:
+      - '3000:3000'
+    links:
+      - tasks-mongo-db
+    depends_on:
+      - tasks-mongo-db
+  tasks-mongo-db:
+    container_name: tasks-mongo-db
+    image: mongo
+    volumes:
+      - ./etc/mongo/db:/data/db

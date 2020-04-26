@@ -4,6 +4,6 @@ export const databaseProviders = [
   {
     provide: 'DATABASE_CONNECTION',
     useFactory: () =>
-      mongoose.connect('mongodb://localhost/tasks'),
+      mongoose.connect('mongodb://tasks-mongo-db/tasks'),
   },
 ];
