@@ -9,5 +9,4 @@ RUN yarn build
 FROM node:10-alpine
 WORKDIR /app
 COPY --from=builder /app ./
-EXPOSE 3000
 CMD ["yarn", "start:prod"]
