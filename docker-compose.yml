@@ -2,14 +2,22 @@ version: '3'
 services:
   backend:
     container_name: backend
-    restart: always
     build: ./backend
     ports:
-      - '3000:3000'
+      - '3000'
     links:
       - tasks-mongo-db
     depends_on:
       - tasks-mongo-db
+  ui:
+    container_name: ui
+    build: ./ui
+    depends_on:
+      - backend
+    links:
+      - backend
+    ports:
+    - '80:80'
   tasks-mongo-db:
     container_name: tasks-mongo-db
     image: mongo
